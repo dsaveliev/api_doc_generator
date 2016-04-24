@@ -1,0 +1,1 @@
+require 'api_doc_generator/rspec/matchers/match_response_schema'
