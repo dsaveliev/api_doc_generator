@@ -10,17 +10,12 @@ module ApiDocGenerator::Schema
       data = parse_json(source)
 
       output = []
-      #output << "# #{data["title"]}\n"
-      output << "***"
-      output << "**Текущая версия документа сгенерирована**: #{Time.now}\n"
-      output << "**[Текущая версия API в формате Markdown](/schema.md)**"
-      output << "***"
-      output << "# Общие ошибки\n"
+      output << "## Общие ошибки\n"
       output << render_errors(data)
       data["properties"].values.each do |chapter|
-        output << "# #{chapter["title"]}\n"
-        chapter["properties"].values.each do |section|
-          output << render_section(section)
+        output << "## #{chapter["title"]}\n"
+        chapter["properties"].values.each do |action|
+          output << render_action(action["$ref"])
         end
       end
       output.join("\n")
