@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 module ApiDocGenerator
   module ApplicationHelper
     def markdown(text)
@@ -14,7 +16,7 @@ module ApiDocGenerator
       }
 
       renderer = BootstrapTables.new(options)
-      markdown = Redcarpet::Markdown.new(renderer, extensions)
+      markdown = ::Redcarpet::Markdown.new(renderer, extensions)
 
       markdown.render(text).html_safe
     end
@@ -32,8 +34,8 @@ module ApiDocGenerator
         fenced_code_blocks: true
       }
 
-      renderer_toc = Redcarpet::Render::HTML_TOC.new(options)
-      markdown_toc = Redcarpet::Markdown.new(renderer_toc, extensions)
+      renderer_toc = ::Redcarpet::Render::HTML_TOC.new(options)
+      markdown_toc = ::Redcarpet::Markdown.new(renderer_toc, extensions)
 
       markdown_toc.render(text).html_safe
     end
